@@ -20,8 +20,14 @@ class RegisterView extends PureComponent<
   FormikProps<FormValues> & Props
 > {
   render() {
+    const {
+      values,
+      handleChange,
+      handleBlur,
+      handleSubmit
+    } = this.props;
     return (
-      <div style={{ display: "flex" }}>
+      <form style={{ display: "flex" }} onSubmit={handleSubmit}>
         <div style={{ width: 400, margin: "auto" }}>
           <FormItem>
             <Input
@@ -30,6 +36,9 @@ class RegisterView extends PureComponent<
 
               prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
               placeholder="Email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </FormItem>
           <FormItem>
@@ -40,6 +49,9 @@ class RegisterView extends PureComponent<
               prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }}/>}
               type="password"
               placeholder="Password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </FormItem>
           <FormItem>
@@ -57,10 +69,10 @@ class RegisterView extends PureComponent<
             </Button>
           </FormItem>
           <FormItem>
-            Or <a href="">login now!</a>
+            Or <a href=""> login now!</a>
           </FormItem>
         </div>
-      </div>
+      </form>
     );
   }
 }
