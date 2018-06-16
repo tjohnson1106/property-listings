@@ -25,7 +25,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "",
-    "database": "grapqhl-ts-server-boilerplate-test",
+    "database": "grapqhl_ts_server_boilerplate_test",
     "synchronize": true,
     "logging": false,
     "dropSchema": true,
