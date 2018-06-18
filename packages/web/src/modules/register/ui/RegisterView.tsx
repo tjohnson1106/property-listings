@@ -10,9 +10,12 @@ interface FormValues {
   email: string;
   password: string;
 }
-/*prettier-ignore*/
+
 interface Props {
-  submit: (values: FormValues) => Promise<FormikErrors<FormValues> | null>; }
+  submit: (
+    values: FormValues
+  ) => Promise<FormikErrors<FormValues> | null>;
+}
 
 class RegisterView extends PureComponent<
   FormikProps<FormValues> & Props
@@ -26,29 +29,57 @@ class RegisterView extends PureComponent<
       touched,
       errors
     } = this.props;
+
     return (
-      /*prettier-ignore*/
       <form style={{display: "flex"}} onSubmit={handleSubmit}>
         <div style={{width: 400, margin: "auto"}}>
-          <FormItem help={touched.email && errors.email ? errors.email : ""}>
+          <FormItem
+            help={touched.email && errors.email ? errors.email : ""}
+            // tslint:disable-next-line:jsx-no-multiline-js
+            validateStatus={
+              touched.email && errors.email ? "error" : undefined
+            }
+          >
             <Input
+              // tslint:disable-next-line:jsx-no-multiline-js
               name="email"
-              /*prettier-ignore*/
-
-              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              // tslint:disable-next-line:jsx-no-multiline-js
+              prefix={
+                <Icon
+                  type="user"
+                  style={{color: "rgba(0,0,0,.25)"}}
+                />
+              }
               placeholder="Email"
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
             />
           </FormItem>
-          
-          <FormItem /*prettier-ignore*/ help={touched.password && errors.password ? errors.password : ""}>
+
+          <FormItem
+            // tslint:disable-next-line:jsx-no-multiline-js
+            help={
+              touched.password && errors.password
+                ? errors.password
+                : ""
+            }
+            // tslint:disable-next-line:jsx-no-multiline-js
+            validateStatus={
+              touched.password && errors.password
+                ? "error"
+                : undefined
+            }
+          >
             <Input
               name="password"
-              /*prettier-ignore*/
-
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }}/>}
+              // tslint:disable-next-line:jsx-no-multiline-js
+              prefix={
+                <Icon
+                  type="lock"
+                  style={{color: "rgba(0,0,0,.25)"}}
+                />
+              }
               type="password"
               placeholder="Password"
               value={values.password}
@@ -84,18 +115,18 @@ const passwordNotLongEnough =
   "password must be at least 3 characters";
 const invalidEmail = "email must be a valid email";
 
-const registerPasswordValidation = yup
-  .string()
-  .min(3, passwordNotLongEnough)
-  .max(255);
-
 const validationSchema = yup.object().shape({
   email: yup
     .string()
     .min(3, emailNotLongEnough)
     .max(255)
-    .email(invalidEmail),
-  password: registerPasswordValidation
+    .email(invalidEmail)
+    .required(),
+  password: yup
+    .string()
+    .min(3, passwordNotLongEnough)
+    .max(255)
+    .required()
 });
 
 export default withFormik<Props, FormValues>({
