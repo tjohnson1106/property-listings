@@ -1,14 +1,14 @@
 import * as yup from "yup";
 import * as bcrypt from "bcryptjs";
+import {registerPasswordValidation} from "@air-init/common";
 
-import { ResolverMap } from "../../../types/graphql-utils";
-import { forgotPasswordLockAccount } from "../../../utils/forgotPasswordLockAccount";
-import { createForgotPasswordLink } from "../../../utils/createForgotPasswordLink";
-import { User } from "../../../entity/User";
-import { userNotFoundError, expiredKeyError } from "./errorMessages";
-import { forgotPasswordPrefix } from "../../../constants";
-import { registerPasswordValidation } from "../../../yupSchemas";
-import { formatYupError } from "../../../utils/formatYupError";
+import {ResolverMap} from "../../../types/graphql-utils";
+import {forgotPasswordLockAccount} from "../../../utils/forgotPasswordLockAccount";
+import {createForgotPasswordLink} from "../../../utils/createForgotPasswordLink";
+import {User} from "../../../entity/User";
+import {userNotFoundError, expiredKeyError} from "./errorMessages";
+import {forgotPasswordPrefix} from "../../../constants";
+import {formatYupError} from "../../../utils/formatYupError";
 
 // 20 minutes
 // lock account
@@ -21,10 +21,10 @@ export const resolvers: ResolverMap = {
   Mutation: {
     sendForgotPasswordEmail: async (
       _,
-      { email }: GQL.ISendForgotPasswordEmailOnMutationArguments,
-      { redis }
+      {email}: GQL.ISendForgotPasswordEmailOnMutationArguments,
+      {redis}
     ) => {
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({where: {email}});
       if (!user) {
         return [
           {
@@ -42,8 +42,11 @@ export const resolvers: ResolverMap = {
     },
     forgotPasswordChange: async (
       _,
-      { newPassword, key }: GQL.IForgotPasswordChangeOnMutationArguments,
-      { redis }
+      {
+        newPassword,
+        key
+      }: GQL.IForgotPasswordChangeOnMutationArguments,
+      {redis}
     ) => {
       const redisKey = `${forgotPasswordPrefix}${key}`;
 
@@ -58,7 +61,7 @@ export const resolvers: ResolverMap = {
       }
 
       try {
-        await schema.validate({ newPassword }, { abortEarly: false });
+        await schema.validate({newPassword}, {abortEarly: false});
       } catch (err) {
         return formatYupError(err);
       }
@@ -66,7 +69,7 @@ export const resolvers: ResolverMap = {
       const hashedPassword = await bcrypt.hash(newPassword, 10);
 
       const updatePromise = User.update(
-        { id: userId },
+        {id: userId},
         {
           forgotPasswordLocked: false,
           password: hashedPassword
