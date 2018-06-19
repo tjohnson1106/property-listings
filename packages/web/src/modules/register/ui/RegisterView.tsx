@@ -1,11 +1,18 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
-import {Form, Icon, Input, Button} from "antd";
-import {withFormik, FormikErrors, FormikProps, Field} from "formik";
+import * as Antd from "antd";
+import {
+  withFormik,
+  FormikErrors,
+  FormikProps,
+  Field,
+  Form
+} from "formik";
 import {validUserSchema} from "@air-init/common";
 import {InputField} from "../../shared/InputField";
 
-const FormItem = Form.Item;
+const {Form: AntForm, Icon, Button} = Antd;
+const FormItem = AntForm.Item;
 
 interface FormValues {
   email: string;
@@ -19,23 +26,16 @@ interface Props {
 }
 
 class RegisterView extends PureComponent<
+  // tslint:disable-next-line:jsx-no-multiline-js
   FormikProps<FormValues> & Props
 > {
   render() {
-    const {
-      values,
-      handleChange,
-      handleBlur,
-      handleSubmit,
-      touched,
-      errors
-    } = this.props;
-
     return (
-      <form style={{display: "flex"}} onSubmit={handleSubmit}>
+      <Form style={{display: "flex"}}>
         <div style={{width: 400, margin: "auto"}}>
           <Field
             name="email"
+            // tslint:disable-next-line:jsx-no-multiline-js
             prefix={
               (
                 <Icon
@@ -47,37 +47,21 @@ class RegisterView extends PureComponent<
             placeholder="Email"
             component={InputField}
           />
-
-          <FormItem
+          <Field
+            name="password"
+            type="password"
             // tslint:disable-next-line:jsx-no-multiline-js
-            help={
-              touched.password && errors.password
-                ? errors.password
-                : ""
-            }
-            // tslint:disable-next-line:jsx-no-multiline-js
-            validateStatus={
-              touched.password && errors.password
-                ? "error"
-                : undefined
-            }
-          >
-            <Input
-              name="password"
-              // tslint:disable-next-line:jsx-no-multiline-js
-              prefix={
+            prefix={
+              (
                 <Icon
                   type="lock"
                   style={{color: "rgba(0,0,0,.25)"}}
                 />
-              }
-              type="password"
-              placeholder="Password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </FormItem>
+              ) as any
+            }
+            placeholder="Password"
+            component={InputField}
+          />
           <FormItem>
             <a className="login-form-forget" href="">
               Forgot Password
@@ -87,7 +71,7 @@ class RegisterView extends PureComponent<
             <Button
               type="primary"
               htmlType="submit"
-              className="login-form-forget"
+              className="login-form"
             >
               Register
             </Button>
@@ -96,7 +80,7 @@ class RegisterView extends PureComponent<
             Or <a href=""> login now!</a>
           </FormItem>
         </div>
-      </form>
+      </Form>
     );
   }
 }
@@ -111,7 +95,3 @@ export default withFormik<Props, FormValues>({
     }
   }
 })(RegisterView);
-
-// export const RegisterView = withFormik({
-//     mapPropsToValues: () => ({ email: "", password: ""})
-// })(C);
