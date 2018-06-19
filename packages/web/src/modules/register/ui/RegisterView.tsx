@@ -1,8 +1,9 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
 import {Form, Icon, Input, Button} from "antd";
-import {withFormik, FormikErrors, FormikProps} from "formik";
+import {withFormik, FormikErrors, FormikProps, Field} from "formik";
 import {validUserSchema} from "@air-init/common";
+import {InputField} from "../../shared/InputField";
 
 const FormItem = Form.Item;
 
@@ -33,29 +34,19 @@ class RegisterView extends PureComponent<
     return (
       <form style={{display: "flex"}} onSubmit={handleSubmit}>
         <div style={{width: 400, margin: "auto"}}>
-          <FormItem
-            help={touched.email && errors.email ? errors.email : ""}
-            // tslint:disable-next-line:jsx-no-multiline-js
-            validateStatus={
-              touched.email && errors.email ? "error" : undefined
-            }
-          >
-            <Input
-              // tslint:disable-next-line:jsx-no-multiline-js
-              name="email"
-              // tslint:disable-next-line:jsx-no-multiline-js
-              prefix={
+          <Field
+            name="email"
+            prefix={
+              (
                 <Icon
                   type="user"
                   style={{color: "rgba(0,0,0,.25)"}}
                 />
-              }
-              placeholder="Email"
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-          </FormItem>
+              ) as any
+            }
+            placeholder="Email"
+            component={InputField}
+          />
 
           <FormItem
             // tslint:disable-next-line:jsx-no-multiline-js
