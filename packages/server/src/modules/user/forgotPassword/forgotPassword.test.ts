@@ -1,15 +1,16 @@
-import { Connection } from "typeorm";
+import {Connection} from "typeorm";
 import * as Redis from "ioredis";
 import * as faker from "faker";
 
-import { User } from "../../../entity/User";
-import { TestClient } from "../../../utils/TestClient";
-import { createForgotPasswordLink } from "../../../utils/createForgotPasswordLink";
-import { forgotPasswordLockAccount } from "../../../utils/forgotPasswordLockAccount";
-import { passwordNotLongEnough } from "../register/errorMessages";
-import { expiredKeyError } from "./errorMessages";
-import { forgotPasswordLockedError } from "../login/errorMessages";
-import { createTestConn } from "../../../testUtils/createTestConn";
+import {passwordNotLongEnough} from "@air-init/common";
+
+import {User} from "../../../entity/User";
+import {TestClient} from "../../../utils/TestClient";
+import {createForgotPasswordLink} from "../../../utils/createForgotPasswordLink";
+import {forgotPasswordLockAccount} from "../../../utils/forgotPasswordLockAccount";
+import {expiredKeyError} from "./errorMessages";
+import {forgotPasswordLockedError} from "../login/errorMessages";
+import {createTestConn} from "../../../testUtils/createTestConn";
 
 let conn: Connection;
 export const redis = new Redis();
@@ -68,7 +69,10 @@ describe("forgot password", () => {
       }
     });
 
-    const response = await client.forgotPasswordChange(newPassword, key);
+    const response = await client.forgotPasswordChange(
+      newPassword,
+      key
+    );
 
     expect(response.data).toEqual({
       forgotPasswordChange: null
@@ -76,7 +80,10 @@ describe("forgot password", () => {
 
     // make sure redis key expires after password change
     expect(
-      await client.forgotPasswordChange(faker.internet.password(), key)
+      await client.forgotPasswordChange(
+        faker.internet.password(),
+        key
+      )
     ).toEqual({
       data: {
         forgotPasswordChange: [
