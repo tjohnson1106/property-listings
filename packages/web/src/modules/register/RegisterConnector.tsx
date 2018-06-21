@@ -9,12 +9,14 @@ import RegisterView from "./ui/RegisterView";
 // controller -> connector -> view
 
 export class RegisterConnector extends PureComponent {
-
-
   render() {
     return (
+      // tslint:disable-next-line:jsx-no-multiline-js
       <RegisterController>
-        {({submit}) => <RegisterView submit={submit} />}
+        {({submit}: {submit: any}) => (
+          // tslint:disable-next-line:jsx-no-multiline-js
+          <RegisterView submit={submit} />
+        )}
       </RegisterController>
     );
   }
