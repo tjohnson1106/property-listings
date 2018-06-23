@@ -13,7 +13,7 @@ export class RegisterConnector extends PureComponent {
     return (
       // tslint:disable-next-line:jsx-no-multiline-js
       <RegisterController>
-        {({submit}: {submit: any}) => (
+        {({submit}) => (
           // tslint:disable-next-line:jsx-no-multiline-js
           <RegisterView submit={submit} />
         )}
