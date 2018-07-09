@@ -2,7 +2,8 @@ import * as React from "react";
 import PureComponent = React.PureComponent;
 import { withFormik, FormikErrors, FormikProps, Field } from "formik";
 import { validUserSchema } from "@air-init/common";
-import { View, Button } from "react-native";
+import { View } from "react-native";
+import { Card, Button } from "react-native-elements";
 
 import { InputField } from "../../shared/InputField";
 
@@ -24,20 +25,24 @@ class RegisterView extends PureComponent<
   render() {
     const { handleSubmit } = this.props;
     return (
-      <View style={{ marginTop: 200 }}>
-        <Field
-          name="email"
-          placeholder="Email"
-          component={InputField}
-        />
-        <Field
-          name="password"
-          secureTextEntry={true}
-          placeholder="Password"
-          component={InputField}
-        />
+      <View
+        style={{ flex: 1, display: "flex", justifyContent: "center" }}
+      >
+        <Card>
+          <Field
+            name="email"
+            placeholder="Email"
+            component={InputField as any}
+          />
+          <Field
+            name="password"
+            secureTextEntry={true}
+            placeholder="Password"
+            component={InputField as any}
+          />
 
-        <Button title="Submit" onPress={handleSubmit as any} />
+          <Button title="Submit" onPress={handleSubmit as any} />
+        </Card>
       </View>
     );
   }
@@ -52,4 +57,4 @@ export default withFormik<Props, FormValues>({
       setErrors(errors);
     }
   }
-})(RegisterView);
+})(RegisterView as any);
