@@ -3,10 +3,19 @@ import Component = React.Component;
 import { FieldProps } from "formik";
 import { Input } from "react-native-elements";
 
-//left 07/05 install: rn-elenments beta-5 , remove old types
-//onchange text function next
+const errorStyle = {
+  color: "red"
+};
 
 class InputField extends Component<FieldProps<any>> {
+  onChangeText = (text: string) => {
+    const {
+      form: { setFieldValue },
+      field: { name }
+    } = this.props;
+    setFieldValue(name, text);
+  };
+
   render() {
     const {
       field, // { name, value, onChange, onBlur }
@@ -24,7 +33,14 @@ class InputField extends Component<FieldProps<any>> {
         // >
         //   <Input {...field} {...props} />
         // </FormItem>
-        <Input />
+        <Input
+          placeholder="INPUT WITH ERROR MESSAGE"
+          errorStyle={{ color: "red" }}
+          errorMessage={errorMessage}
+          onChangeText={this.onChangeText}
+          value={field.value}
+          onBlur={field.onBlur}
+        />
       );
     }
   }
