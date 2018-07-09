@@ -2,7 +2,7 @@ import * as React from "react";
 import PureComponent = React.PureComponent;
 import { withFormik, FormikErrors, FormikProps, Field } from "formik";
 import { validUserSchema } from "@air-init/common";
-import { View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Card, Button } from "react-native-elements";
 
 import { InputField } from "../../shared/InputField";
@@ -25,28 +25,50 @@ class RegisterView extends PureComponent<
   render() {
     const { handleSubmit } = this.props;
     return (
-      <View
-        style={{ flex: 1, display: "flex", justifyContent: "center" }}
-      >
+      <View style={styles.root}>
         <Card>
+          <Text style={styles.regText}>Register</Text>
           <Field
             name="email"
             placeholder="Email"
             component={InputField as any}
+            containerStyle={{ width: "100%" }}
+            autoCapitalize="none"
           />
           <Field
             name="password"
             secureTextEntry={true}
             placeholder="Password"
             component={InputField as any}
+            containerStyle={{ width: "100%" }}
+            autoCapitalize="none"
           />
 
-          <Button title="Submit" onPress={handleSubmit as any} />
+          <Button
+            style={styles.btn}
+            title="Submit"
+            onPress={handleSubmit as any}
+          />
         </Card>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center"
+  },
+  regText: {
+    fontSize: 30,
+    marginBottom: 10
+  },
+  btn: {
+    marginTop: 30
+  }
+});
 
 export default withFormik<Props, FormValues>({
   validationSchema: validUserSchema,
