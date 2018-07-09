@@ -24,7 +24,7 @@ class RegisterView extends PureComponent<
   render() {
     const { handleSubmit } = this.props;
     return (
-      <View style={{ width: 400, margin: "auto" }}>
+      <View style={{ marginTop: 200 }}>
         <Field
           name="email"
           placeholder="Email"
@@ -32,7 +32,7 @@ class RegisterView extends PureComponent<
         />
         <Field
           name="password"
-          type="password"
+          secureTextEntry={true}
           placeholder="Password"
           component={InputField}
         />

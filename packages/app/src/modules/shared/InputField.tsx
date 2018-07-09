@@ -7,7 +7,7 @@ const errorStyle = {
   color: "red"
 };
 
-class InputField extends Component<FieldProps<any>> {
+export class InputField extends Component<FieldProps<any>> {
   onChangeText = (text: string) => {
     const {
       form: { setFieldValue },
@@ -26,24 +26,14 @@ class InputField extends Component<FieldProps<any>> {
       const errorMessage = touched[field.name] && errors[field.name];
 
       return (
-        // <FormItem
-        //   help={errorMessage}
-        //   // tslint:disable-next-line:jsx-no-multiline-js
-        //   validateStatus={errorMessage ? "error" : undefined}
-        // >
-        //   <Input {...field} {...props} />
-        // </FormItem>
         <Input
-          placeholder="INPUT WITH ERROR MESSAGE"
-          errorStyle={{ color: "red" }}
+          {...props}
+          errorStyle={errorStyle}
           errorMessage={errorMessage}
           onChangeText={this.onChangeText}
           value={field.value}
-          onBlur={field.onBlur}
         />
       );
     }
   }
 }
-
-export default InputField;
