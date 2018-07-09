@@ -1,11 +1,11 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
-import {graphql, ChildMutateProps} from "react-apollo";
+import { graphql, ChildMutateProps } from "react-apollo";
 import gql from "graphql-tag";
 import {
   RegisterMutation,
   RegisterMutationVariables
-} from "../../operation-result-types";
+} from "../../schemaTypes";
 
 interface Props {
   children: (
@@ -28,7 +28,7 @@ class ControllerPC extends PureComponent<
   };
 
   render() {
-    return this.props.children({submit: this.submit});
+    return this.props.children({ submit: this.submit });
   }
 }
 const registerMutation = gql`

@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build:server": "lerna run build --scope={@air-init/common,@air-init/server}",
-    "build:web": "lerna run build --scope={@air-init/common,@air-init/web}",
+    "build:web": "lerna run build --scope={@air-init/common,@air-init/controller,@air-init/web}",
     "build:controller": "lerna run build --scope={@air-init/common,@air-init/controller}"
   },
   "workspaces": {
