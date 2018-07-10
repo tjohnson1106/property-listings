@@ -10,8 +10,10 @@ import {
 } from "formik";
 import { Link } from "react-router-dom";
 
-import { validUserSchema } from "@air-init/common";
+import { loginSchema } from "@air-init/common";
 import { InputField } from "../../shared/InputField";
+
+// 07092018 next task: create connector in controller
 
 const { Form: AntForm, Icon, Button } = Antd;
 const FormItem = AntForm.Item;
@@ -27,7 +29,7 @@ interface Props {
   ) => Promise<FormikErrors<FormValues> | null>;
 }
 
-class RegisterView extends PureComponent<
+class LoginView extends PureComponent<
   FormikProps<FormValues> & Props
 > {
   render() {
@@ -46,11 +48,13 @@ class RegisterView extends PureComponent<
                 />
               ) as any
             }
+            // tslint:disable-next-line:jsx-no-multiline-js
             placeholder="Email"
             component={InputField}
           />
           <Field
             name="password"
+            // tslint:disable-next-line:jsx-no-multiline-js
             type="password"
             // tslint:disable-next-line:jsx-no-multiline-js
             prefix={
@@ -75,11 +79,11 @@ class RegisterView extends PureComponent<
               htmlType="submit"
               className="login-form"
             >
-              Register
+              Login
             </Button>
           </FormItem>
           <FormItem>
-            Or <Link to="/login"> login now!</Link>
+            Or <Link to="/register"> register now!</Link>
           </FormItem>
         </div>
       </Form>
@@ -88,7 +92,9 @@ class RegisterView extends PureComponent<
 }
 
 export default withFormik<Props, FormValues>({
-  validationSchema: validUserSchema,
+  validationSchema: loginSchema,
+  validateOnBlur: false,
+  validateOnChange: false,
   mapPropsToValues: () => ({ email: "", password: "" }),
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await props.submit(values);
@@ -96,4 +102,4 @@ export default withFormik<Props, FormValues>({
       setErrors(errors);
     }
   }
-})(RegisterView);
+})(LoginView);
