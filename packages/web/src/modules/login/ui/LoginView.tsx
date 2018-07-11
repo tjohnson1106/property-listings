@@ -1,13 +1,7 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
 import * as Antd from "antd";
-import {
-  withFormik,
-  FormikErrors,
-  FormikProps,
-  Field,
-  Form
-} from "formik";
+import { withFormik, FormikProps, Field, Form } from "formik";
 import { Link } from "react-router-dom";
 
 import { loginSchema } from "@air-init/common";
@@ -24,7 +18,7 @@ interface FormValues {
 interface Props {
   submit: (
     values: FormValues
-  ) => Promise<FormikErrors<FormValues> | null>;
+  ) => Promise<{ [key: string]: string } | null>;
 }
 
 class LoginView extends PureComponent<

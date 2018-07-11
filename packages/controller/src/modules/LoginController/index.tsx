@@ -6,12 +6,16 @@ import {
   LoginMutation,
   LoginMutationVariables
 } from "../../schemaTypes";
-import { log } from "util";
+import { normalizeErrors } from "../../utils/normalizeErrors";
 
 interface Props {
   children: (
     data: {
-      submit: (values: LoginMutationVariables) => Promise<null>;
+      submit: (
+        values: LoginMutationVariables
+      ) => Promise<{
+        [key: string]: string;
+      } | null>;
     }
   ) => JSX.Element | null;
 }
@@ -30,6 +34,7 @@ class ControllerPC extends PureComponent<
 
     if (login) {
       //show errors
+      return normalizeErrors(login);
     }
 
     return null;
