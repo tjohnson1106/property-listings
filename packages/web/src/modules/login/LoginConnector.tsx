@@ -1,5 +1,6 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
+import { LoginController } from "@air-init/controller";
 
 import LoginView from "./ui/LoginView";
 
@@ -8,12 +9,11 @@ import LoginView from "./ui/LoginView";
 // controller -> connector -> view
 
 export class LoginConnector extends PureComponent {
-  dummySubmit = async (values: any) => {
-    console.log(values);
-
-    return null;
-  };
   render() {
-    return <LoginView submit={this.dummySubmit} />;
+    return (
+      <LoginController>
+        {({ submit }) => <LoginView submit={submit} />}
+      </LoginController>
+    );
   }
 }

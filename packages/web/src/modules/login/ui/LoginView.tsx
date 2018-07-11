@@ -13,8 +13,6 @@ import { Link } from "react-router-dom";
 import { loginSchema } from "@air-init/common";
 import { InputField } from "../../shared/InputField";
 
-// 07092018 next task: create connector in controller
-
 const { Form: AntForm, Icon, Button } = Antd;
 const FormItem = AntForm.Item;
 
