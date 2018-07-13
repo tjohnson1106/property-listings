@@ -1,7 +1,7 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
 
-import {RegisterController} from "@air-init/controller";
+import { RegisterController } from "@air-init/controller";
 import RegisterView from "./ui/RegisterView";
 
 // container -> view
@@ -11,13 +11,11 @@ import RegisterView from "./ui/RegisterView";
 export class RegisterConnector extends PureComponent {
   render() {
     return (
-      // tslint:disable-next-line:jsx-no-multiline-js
       <RegisterController>
-        {({submit}) => (
-          // tslint:disable-next-line:jsx-no-multiline-js
-          <RegisterView submit={submit} />
-        )}
+        {({ submit }) => <RegisterView submit={submit} />}
       </RegisterController>
     );
   }
 }
+
+// tslint:disable-next-line:jsx-no-multiline-js

@@ -7,7 +7,7 @@ import {
   RegisterMutationVariables
 } from "../../schemaTypes";
 
-interface Props {
+export interface Props {
   children: (
     data: {
       submit: (values: RegisterMutationVariables) => Promise<null>;
