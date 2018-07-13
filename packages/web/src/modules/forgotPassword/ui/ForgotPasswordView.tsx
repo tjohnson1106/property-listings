@@ -4,7 +4,6 @@ import * as Antd from "antd";
 import { withFormik, FormikProps, Field, Form } from "formik";
 import { Link } from "react-router-dom";
 
-import { loginSchema } from "@air-init/common";
 import { InputField } from "../../shared/InputField";
 import { NormalizedErrorMap } from "@air-init/controller";
 
@@ -42,38 +41,14 @@ class ForgotPasswordView extends PureComponent<
             placeholder="Email"
             component={InputField}
           />
-          <Field
-            name="password"
-            // tslint:disable-next-line:jsx-no-multiline-js
-            type="password"
-            // tslint:disable-next-line:jsx-no-multiline-js
-            prefix={
-              (
-                <Icon
-                  type="lock"
-                  style={{ color: "rgba(0,0,0,.25)" }}
-                />
-              ) as any
-            }
-            placeholder="Password"
-            component={InputField}
-          />
-          <FormItem>
-            <a className="login-form-forget" href="">
-              Forgot Password
-            </a>
-          </FormItem>
           <FormItem>
             <Button
               type="primary"
               htmlType="submit"
               className="login-form"
             >
-              Login
+              Reset Password
             </Button>
-          </FormItem>
-          <FormItem>
-            Or <Link to="/register"> register now!</Link>
           </FormItem>
         </div>
       </Form>

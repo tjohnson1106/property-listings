@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { loginSchema } from "@air-init/common";
 import { InputField } from "../../shared/InputField";
 import { NormalizedErrorMap } from "@air-init/controller";
-import { NormalizedErrorMap } from "../../../../../controller/dist/types/NormalizedErrorMap";
 
 const { Form: AntForm, Icon, Button } = Antd;
 const FormItem = AntForm.Item;
@@ -61,9 +60,7 @@ class LoginView extends PureComponent<
             component={InputField}
           />
           <FormItem>
-            <a className="login-form-forget" href="">
-              Forgot Password
-            </a>
+            <Link to="/forgot-password">Forgot Password</Link>
           </FormItem>
           <FormItem>
             <Button
