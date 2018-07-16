@@ -3,11 +3,11 @@ import PureComponent = React.PureComponent;
 import { graphql, ChildMutateProps } from "react-apollo";
 import gql from "graphql-tag";
 import {
-  SendForgotPasswordEmailMutation,
-  SendForgotPasswordEmailMutationVariables
+  ForgotPasswordChangeMutation,
+  ForgotPasswordChangeMutationVariables
 } from "../../schemaTypes";
 
-interface Props {
+export interface Props {
   children: (
     data: {
       submit: (
@@ -40,17 +40,23 @@ class ControllerPC extends PureComponent<
     return this.props.children({ submit: this.submit });
   }
 }
-const forgotPasswordMutation = gql`
-  mutation SendForgotPasswordEmailMutation($email: String!) {
-    SendForgotPasswordEmail(email: $email)
+const forgotPasswordChangeMutation = gql`
+  mutation ForgotPasswordChangeMutation(
+    $newPassword: String!
+    $key: String!
+  ) {
+    forgotPasswordChange(newPassword: $newPassword, key: $key) {
+      path
+      message
+    }
   }
 `;
 
 /* ts-error: wants the interface explicitly exported but then throw error in index file */
-export const ForgotPasswordController = graphql<
+export const ChangePasswordController = graphql<
   Props,
-  SendForgotPasswordEmailMutation,
-  SendForgotPasswordEmailMutationVariables
->(forgotPasswordMutation)(ControllerPC);
+  ForgotPasswordChangeMutation,
+  ForgotPasswordChangeMutationVariables
+>(forgotPasswordChangeMutation)(ControllerPC);
 
 //no platform specific code to react or react native
