@@ -30,8 +30,8 @@ class ChangePasswordView extends PureComponent<
             // tslint:disable-next-line:jsx-no-multiline-js
             type="password"
             // tslint:disable-next-line:jsx-no-multiline-js
-
             prefix={
+              // tslint:disable-next-line:jsx-no-multiline-js
               (
                 <Icon
                   type="user"
