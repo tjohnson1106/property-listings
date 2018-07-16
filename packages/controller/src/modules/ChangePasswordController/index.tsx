@@ -9,7 +9,7 @@ import {
 import { normalizeErrors } from "../../utils/normalizeErrors";
 import { NormalizedErrorMap } from "../../types/NormalizedErrorMap";
 
-export interface Props {
+interface Props {
   children: (
     data: {
       submit: (

@@ -5,6 +5,7 @@ import { withFormik, FormikProps, Field, Form } from "formik";
 
 import { InputField } from "../../shared/InputField";
 import { NormalizedErrorMap } from "@air-init/controller";
+import { changePasswordSchema } from "@air-init/common";
 
 const { Form: AntForm, Icon, Button } = Antd;
 const FormItem = AntForm.Item;
@@ -59,6 +60,8 @@ class ChangePasswordView extends PureComponent<
 }
 
 export default withFormik<Props, FormValues>({
+  validationSchema: changePasswordSchema,
+
   mapPropsToValues: () => ({ newPassword: "" }),
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await props.submit(values);
