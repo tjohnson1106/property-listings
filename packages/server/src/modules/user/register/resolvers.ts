@@ -43,11 +43,11 @@ export const resolvers: ResolverMap = {
 
       await user.save();
 
-      //re-implemented 07132018
       if (process.env.NODE_ENV !== "test") {
         await sendEmail(
           email,
-          await createConfirmEmailLink(url, user.id, redis)
+          await createConfirmEmailLink(url, user.id, redis),
+          "confirm email"
         );
       }
 

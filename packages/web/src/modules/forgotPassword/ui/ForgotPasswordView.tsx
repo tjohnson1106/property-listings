@@ -2,7 +2,6 @@ import * as React from "react";
 import PureComponent = React.PureComponent;
 import * as Antd from "antd";
 import { withFormik, FormikProps, Field, Form } from "formik";
-import { Link } from "react-router-dom";
 
 import { InputField } from "../../shared/InputField";
 import { NormalizedErrorMap } from "@air-init/controller";
