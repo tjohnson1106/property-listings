@@ -7,7 +7,7 @@ import {
   SendForgotPasswordEmailMutationVariables
 } from "../../schemaTypes";
 
-export interface Props {
+interface Props {
   children: (
     data: {
       submit: (
@@ -46,6 +46,7 @@ const forgotPasswordMutation = gql`
   }
 `;
 
+/* ts-error: wants the interface explicitly exported but then throw error in index file */
 export const ForgotPasswordController = graphql<
   Props,
   SendForgotPasswordEmailMutation,
