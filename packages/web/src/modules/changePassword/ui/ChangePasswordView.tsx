@@ -10,7 +10,7 @@ const { Form: AntForm, Icon, Button } = Antd;
 const FormItem = AntForm.Item;
 
 interface FormValues {
-  email: string;
+  newPassword: string;
 }
 
 interface Props {

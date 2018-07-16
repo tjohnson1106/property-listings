@@ -1,14 +1,20 @@
 import * as nodemailer from "nodemailer";
 
-export const sendEmail = async (recipient: string, url: string) => {
+export const sendEmail = async (
+  recipient: string,
+  url: string,
+  linkText: string
+) => {
   //credentials
+  //security issue 07162018
   const transporter = nodemailer.createTransport({
     host: "smtp.ethereal.email",
     port: 587,
     auth: {
-      user: "fozn67fxhjcotlyo@ethereal.email",
-      pass: "x53xFd5pqUJwJvHW7p"
-    }
+      user: "orim7visoctxzbou@ethereal.email",
+      pass: "Xyyt6vgpJZFc2e8EaF"
+    },
+    tls: { rejectUnauthorized: false }
   });
 
   const message = {
@@ -19,7 +25,7 @@ export const sendEmail = async (recipient: string, url: string) => {
     html: `<html>
   <body>
   <p>Testing NodeMailer /p>
-  <a href="${url}">confirm email</a>
+  <a href="${url}">${linkText}</a>
   </body>
   </html>`
   };
