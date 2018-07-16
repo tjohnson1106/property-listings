@@ -1,6 +1,5 @@
-import * as yup from "yup";
 import * as bcrypt from "bcryptjs";
-import { registerPasswordValidation } from "@air-init/common";
+import { changePasswordSchema } from "@air-init/common";
 
 import { ResolverMap } from "../../../types/graphql-utils";
 import { createForgotPasswordLink } from "../../../utils/createForgotPasswordLink";
@@ -9,13 +8,6 @@ import { expiredKeyError } from "./errorMessages";
 import { forgotPasswordPrefix } from "../../../constants";
 import { formatYupError } from "../../../utils/formatYupError";
 import { sendEmail } from "../../../utils/sendEmail";
-
-// 20 minutes
-// lock account
-
-const schema = yup.object().shape({
-  newPassword: registerPasswordValidation
-});
 
 export const resolvers: ResolverMap = {
   Mutation: {
@@ -66,7 +58,10 @@ export const resolvers: ResolverMap = {
       }
 
       try {
-        await schema.validate({ newPassword }, { abortEarly: false });
+        await changePasswordSchema.validate(
+          { newPassword },
+          { abortEarly: false }
+        );
       } catch (err) {
         return formatYupError(err);
       }

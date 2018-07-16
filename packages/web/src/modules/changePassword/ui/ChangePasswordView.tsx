@@ -5,6 +5,7 @@ import { withFormik, FormikProps, Field, Form } from "formik";
 
 import { InputField } from "../../shared/InputField";
 import { NormalizedErrorMap } from "@air-init/controller";
+import { changePasswordSchema } from "@air-init/common";
 
 const { Form: AntForm, Icon, Button } = Antd;
 const FormItem = AntForm.Item;
@@ -17,7 +18,7 @@ interface Props {
   submit: (values: FormValues) => Promise<NormalizedErrorMap | null>;
 }
 
-class ForgotPasswordView extends PureComponent<
+class ChangePasswordView extends PureComponent<
   FormikProps<FormValues> & Props
 > {
   render() {
@@ -26,9 +27,12 @@ class ForgotPasswordView extends PureComponent<
         <div style={{ width: 400, margin: "auto" }}>
           <Field
             // tslint:disable-next-line:jsx-no-multiline-js
-            name="email"
+            name="newpassword"
+            // tslint:disable-next-line:jsx-no-multiline-js
+            type="password"
             // tslint:disable-next-line:jsx-no-multiline-js
             prefix={
+              // tslint:disable-next-line:jsx-no-multiline-js
               (
                 <Icon
                   type="user"
@@ -37,7 +41,7 @@ class ForgotPasswordView extends PureComponent<
               ) as any
             }
             // tslint:disable-next-line:jsx-no-multiline-js
-            placeholder="Email"
+            placeholder="New Password"
             component={InputField}
           />
           <FormItem>
@@ -46,7 +50,7 @@ class ForgotPasswordView extends PureComponent<
               htmlType="submit"
               className="login-form"
             >
-              Reset Password
+              Change Password
             </Button>
           </FormItem>
         </div>
@@ -56,11 +60,13 @@ class ForgotPasswordView extends PureComponent<
 }
 
 export default withFormik<Props, FormValues>({
-  mapPropsToValues: () => ({ email: "" }),
+  validationSchema: changePasswordSchema,
+
+  mapPropsToValues: () => ({ newPassword: "" }),
   handleSubmit: async (values, { props, setErrors }) => {
     const errors = await props.submit(values);
     if (errors) {
       setErrors(errors);
     }
   }
-})(ForgotPasswordView);
+})(ChangePasswordView);
