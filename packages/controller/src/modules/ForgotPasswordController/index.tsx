@@ -3,37 +3,35 @@ import PureComponent = React.PureComponent;
 import { graphql, ChildMutateProps } from "react-apollo";
 import gql from "graphql-tag";
 import {
-  RegisterMutation,
-  RegisterMutationVariables
+  SendForgotPasswordEmailMutation,
+  SendForgotPasswordEmailMutationVariables
 } from "../../schemaTypes";
-import { normalizeErrors } from "../../utils/normalizeErrors";
-import { NormalizedErrorMap } from "../../types/NormalizedErrorMap";
 
 export interface Props {
   children: (
     data: {
       submit: (
-        values: RegisterMutationVariables
-      ) => Promise<NormalizedErrorMap | null>;
+        values: SendForgotPasswordEmailMutationVariables
+      ) => Promise<null>;
     }
   ) => JSX.Element | null;
 }
 
 class ControllerPC extends PureComponent<
-  ChildMutateProps<Props, RegisterMutation, RegisterMutationVariables>
+  ChildMutateProps<
+    Props,
+    SendForgotPasswordEmailMutation,
+    SendForgotPasswordEmailMutationVariables
+  >
 > {
-  submit = async (values: RegisterMutationVariables) => {
+  submit = async (
+    values: SendForgotPasswordEmailMutationVariables
+  ) => {
     console.log(values);
-    const {
-      data: { register }
-    } = await this.props.mutate({
+    const response = await this.props.mutate({
       variables: values
     });
-    console.log("response", register);
-
-    if (register) {
-      return normalizeErrors(register);
-    }
+    console.log("response", response);
 
     return null;
   };
@@ -43,15 +41,15 @@ class ControllerPC extends PureComponent<
   }
 }
 const forgotPasswordMutation = gql`
-mutation SendForgotPasswordEmailMutation($email: String!) {
-  SendForgotPasswordEmail(email: $email)
-}
-`
+  mutation SendForgotPasswordEmailMutation($email: String!) {
+    SendForgotPasswordEmail(email: $email)
+  }
+`;
 
-export const RegisterController = graphql<
+export const ForgotPasswordController = graphql<
   Props,
-  RegisterMutation,
-  RegisterMutationVariables
->(registerMutation)(ControllerPC);
+  SendForgotPasswordEmailMutation,
+  SendForgotPasswordEmailMutationVariables
+>(forgotPasswordMutation)(ControllerPC);
 
 //no platform specific code to react or react native
