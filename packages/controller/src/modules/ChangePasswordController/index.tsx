@@ -6,13 +6,15 @@ import {
   ForgotPasswordChangeMutation,
   ForgotPasswordChangeMutationVariables
 } from "../../schemaTypes";
+import { normalizeErrors } from "../../utils/normalizeErrors";
+import { NormalizedErrorMap } from "../../types/NormalizedErrorMap";
 
 export interface Props {
   children: (
     data: {
       submit: (
-        values: SendForgotPasswordEmailMutationVariables
-      ) => Promise<null>;
+        values: ForgotPasswordChangeMutationVariables
+      ) => Promise<NormalizedErrorMap | null>;
     }
   ) => JSX.Element | null;
 }
@@ -20,18 +22,23 @@ export interface Props {
 class ControllerPC extends PureComponent<
   ChildMutateProps<
     Props,
-    SendForgotPasswordEmailMutation,
-    SendForgotPasswordEmailMutationVariables
+    ForgotPasswordChangeMutation,
+    ForgotPasswordChangeMutationVariables
   >
 > {
-  submit = async (
-    values: SendForgotPasswordEmailMutationVariables
-  ) => {
+  submit = async (values: ForgotPasswordChangeMutationVariables) => {
     console.log(values);
-    const response = await this.props.mutate({
+    const {
+      data: { forgotPasswordChange }
+    } = await this.props.mutate({
       variables: values
     });
-    console.log("response", response);
+
+    console.log(forgotPasswordChange);
+
+    if (forgotPasswordChange) {
+      return normalizeErrors(forgotPasswordChange);
+    }
 
     return null;
   };
