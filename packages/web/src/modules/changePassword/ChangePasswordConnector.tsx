@@ -11,9 +11,8 @@ export class ChangePasswordConnector extends PureComponent<
     key: string;
   }>
 > {
-  submit = async (values: any) => {
-    console.log(values);
-    return null;
+  onFinish = () => {
+    this.props.history.push("/login");
   };
 
   render() {
@@ -30,10 +29,9 @@ export class ChangePasswordConnector extends PureComponent<
       >
         {({ submit }) => (
           <ChangePasswordView
-            // tslint:disable-next-line:jsx-no-lambdas   // tslint:disable-next-line:jsx-no-multiline-js
-            submit={async ({ newPassword }) =>
-              submit({ key, newPassword })
-            }
+            onFinish={this.onFinish}
+            key={key}
+            submit={submit}
           />
         )}
       </ChangePasswordController>

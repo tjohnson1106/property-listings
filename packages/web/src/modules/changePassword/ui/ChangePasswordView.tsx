@@ -4,7 +4,10 @@ import * as Antd from "antd";
 import { withFormik, FormikProps, Field, Form } from "formik";
 
 import { InputField } from "../../shared/InputField";
-import { NormalizedErrorMap } from "@air-init/controller";
+import {
+  NormalizedErrorMap,
+  ForgotPasswordChangeMutationVariables
+} from "@air-init/controller";
 import { changePasswordSchema } from "@air-init/common";
 
 const { Form: AntForm, Icon, Button } = Antd;
@@ -15,7 +18,11 @@ interface FormValues {
 }
 
 interface Props {
-  submit: (values: FormValues) => Promise<NormalizedErrorMap | null>;
+  onFinish: () => void;
+  key: string;
+  submit: (
+    values: ForgotPasswordChangeMutationVariables
+  ) => Promise<NormalizedErrorMap | null>;
 }
 
 class ChangePasswordView extends PureComponent<
@@ -63,10 +70,15 @@ export default withFormik<Props, FormValues>({
   validationSchema: changePasswordSchema,
 
   mapPropsToValues: () => ({ newPassword: "" }),
-  handleSubmit: async (values, { props, setErrors }) => {
-    const errors = await props.submit(values);
+  handleSubmit: async ({ newPassword }, { props, setErrors }) => {
+    const errors = await props.submit({
+      newPassword,
+      key: props.key
+    });
     if (errors) {
       setErrors(errors);
+    } else {
+      props.onFinish();
     }
   }
 })(ChangePasswordView);
