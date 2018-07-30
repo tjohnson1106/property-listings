@@ -42,7 +42,7 @@ class ControllerPC extends PureComponent<
 }
 const forgotPasswordMutation = gql`
   mutation SendForgotPasswordEmailMutation($email: String!) {
-    SendForgotPasswordEmail(email: $email)
+    sendForgotPasswordEmail(email: $email)
   }
 `;
 
