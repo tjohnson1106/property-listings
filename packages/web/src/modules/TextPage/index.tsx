@@ -1,9 +1,18 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
+import { RouteComponentProps } from "react-router-dom";
 
-export class TextPage extends PureComponent {
+export class TextPage extends PureComponent<RouteComponentProps<{}>> {
   render() {
-    console.log(this.props);
-    return <div className="div">Hello Text Page</div>;
+    const {
+      location: { state }
+    } = this.props;
+    return (
+      <div>
+        <h2>
+          {state && state.message ? state.message : "Hello Text Page"}
+        </h2>
+      </div>
+    );
   }
 }
