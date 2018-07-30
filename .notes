@@ -1,3 +1,7 @@
+typeorm migrations need to be created for production environment
+add run migration on connection for production
+
+
 .cookies on web login are not persisting
 
 
