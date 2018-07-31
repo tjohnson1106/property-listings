@@ -21,6 +21,16 @@ export const resolvers: ResolverMap = {
         throw new Error("does not exist");
       }
 
+      if (session.userId !== listing.userId) {
+        //log message
+        console.log(
+          `this user ${
+            session.userId
+          } is attempting to delete a listing they do not own`
+        );
+        throw new Error("not authorized");
+      }
+
       await Listing.remove(listing);
 
       return true;
