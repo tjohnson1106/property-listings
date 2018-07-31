@@ -1,3 +1,6 @@
+07312018 Apply GraphQL Middleware
+
+
 typeorm migrations need to be created for production environment
 add run migration on connection for production
 
