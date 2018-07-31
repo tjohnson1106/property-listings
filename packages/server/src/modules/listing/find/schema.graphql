@@ -1,4 +1,6 @@
-input CreateListingInput {
+type Listing {
+  id: ID!
+
   name: String!
 
   category: String!
@@ -16,8 +18,10 @@ input CreateListingInput {
   guests: Int!
 
   amenities: [String!]!
+
+  pictureUrl: String!
 }
 
-type Mutation {
-  createListing(input: CreateListingInput!): Boolean!
+type Query {
+  findListings: [Listing!]!
 }

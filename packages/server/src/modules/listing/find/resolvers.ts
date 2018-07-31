@@ -3,7 +3,7 @@ import { Listing } from "../../../entity/Listing";
 
 export const resolvers: ResolverMap = {
   Mutation: {
-    createListing: async (_, { input }, { session }) => {
+    findListing: async (_, { input }, { session }) => {
       console.log(session);
 
       if (!session.userId) {
