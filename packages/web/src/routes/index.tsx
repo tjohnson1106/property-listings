@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+import { AuthRoute } from "@air-init/controller";
 import { RegisterConnector } from "../modules/register/RegisterConnector";
 import { LoginConnector } from "../modules/login/LoginConnector";
 import { ForgotPasswordConnector } from "../modules/forgotPassword/ForgotPasswordConnector";
@@ -27,6 +28,7 @@ export const Routes = () => (
         component={ChangePasswordConnector}
       />
       <Route path="/m/" component={TextPage} />
+      <AuthRoute path="/create-listing" component={TextPage} />
     </Switch>
   </BrowserRouter>
 );

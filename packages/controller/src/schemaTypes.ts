@@ -1,5 +1,3 @@
-
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -15,7 +13,6 @@ export interface MeQuery {
   me: MeQuery_me | null;
 }
 
-
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -29,14 +26,15 @@ export interface ForgotPasswordChangeMutation_forgotPasswordChange {
 }
 
 export interface ForgotPasswordChangeMutation {
-  forgotPasswordChange: ForgotPasswordChangeMutation_forgotPasswordChange[] | null;
+  forgotPasswordChange:
+    | ForgotPasswordChangeMutation_forgotPasswordChange[]
+    | null;
 }
 
 export interface ForgotPasswordChangeMutationVariables {
   newPassword: string;
   key: string;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -52,7 +50,6 @@ export interface SendForgotPasswordEmailMutation {
 export interface SendForgotPasswordEmailMutationVariables {
   email: string;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
@@ -72,14 +69,13 @@ export interface LoginMutation_login {
 }
 
 export interface LoginMutation {
-  login: LoginMutation_login | null;
+  login: LoginMutation_login;
 }
 
 export interface LoginMutationVariables {
   email: string;
   password: string;
 }
-
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
