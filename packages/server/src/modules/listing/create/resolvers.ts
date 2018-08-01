@@ -1,12 +1,12 @@
 import { ResolverMap } from "../../../types/graphql-utils";
 import { Listing } from "../../../entity/Listing";
-import { isAuthenticated } from "../../shared/isAuthenticated";
+// import { isAuthenticated } from "../../shared/isAuthenticated";
 
 export const resolvers: ResolverMap = {
   Mutation: {
     createListing: async (_, { input }, { session }) => {
       console.log(session);
-      isAuthenticated(session);
+      // isAuthenticated(session);
       await Listing.create({
         ...input,
         pictureUrl: "",
