@@ -1,3 +1,59 @@
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: MeQuery
+// ====================================================
+
+export interface MeQuery_me {
+  email: string;
+}
+
+export interface MeQuery {
+  me: MeQuery_me | null;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ForgotPasswordChangeMutation
+// ====================================================
+
+export interface ForgotPasswordChangeMutation_forgotPasswordChange {
+  path: string;
+  message: string;
+}
+
+export interface ForgotPasswordChangeMutation {
+  forgotPasswordChange: ForgotPasswordChangeMutation_forgotPasswordChange[] | null;
+}
+
+export interface ForgotPasswordChangeMutationVariables {
+  newPassword: string;
+  key: string;
+}
+
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SendForgotPasswordEmailMutation
+// ====================================================
+
+export interface SendForgotPasswordEmailMutation {
+  sendForgotPasswordEmail: boolean | null;
+}
+
+export interface SendForgotPasswordEmailMutationVariables {
+  email: string;
+}
+
+
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
@@ -16,7 +72,7 @@ export interface LoginMutation_login {
 }
 
 export interface LoginMutation {
-  login: LoginMutation_login;
+  login: LoginMutation_login | null;
 }
 
 export interface LoginMutationVariables {
@@ -24,47 +80,6 @@ export interface LoginMutationVariables {
   password: string;
 }
 
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation:  SendForgotPasswordEmailMutation
-// ====================================================
-
-export interface SendForgotPasswordEmailMutation {
-  sendForgotPasswordEmail: boolean | null;
-}
-
-export interface SendForgotPasswordEmailMutationVariables {
-  email: string;
-}
-
-export interface ForgotPasswordChange_forgotPasswordChange {
-  path: string;
-  message: string;
-}
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-// ====================================================
-// GraphQL mutation operation: ForgotPasswordChangeMutation
-// ====================================================
-
-export interface ForgotPasswordChangeMutation_forgotPasswordChange {
-  path: string;
-  message: string;
-}
-
-export interface ForgotPasswordChangeMutation {
-  forgotPasswordChange:
-    | ForgotPasswordChangeMutation_forgotPasswordChange[]
-    | null;
-}
-
-export interface ForgotPasswordChangeMutationVariables {
-  newPassword: string;
-  key: string;
-}
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
