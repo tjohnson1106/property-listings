@@ -4,6 +4,7 @@
     "exclude": ["config/**/*.js", "node_modules/**/*.ts"]
   },
   "rules": {
-    "jsx-no-multiline-js": 0
+    "jsx-no-multiline-js": 0,
+    "jsx-key": 0
   }
 }
