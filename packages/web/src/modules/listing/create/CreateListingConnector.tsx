@@ -6,7 +6,7 @@ import * as Antd from "antd";
 
 import { InputField } from "../../shared/InputField";
 
-const { Form: AntForm, Icon, Button } = Antd;
+const { Form: AntForm, Button } = Antd;
 const FormItem = AntForm.Item;
 
 // name: String!
@@ -39,17 +39,23 @@ interface FormValues {
   amenities: string[];
 }
 
+const pages = [];
+
 export class CreateListingConnector extends PureComponent<
   RouteComponentProps<{}>
 > {
+  state = {
+    page: 0
+  };
+
   submit = (values: any) => {
     console.log("values", values);
   };
 
   render() {
-    // const { history } = this.props;
     return (
       <Formik<{}, FormValues>
+        // tslint:disable-next-line:jsx-no-multiline-js
         initialValues={{
           name: "",
           category: "",
