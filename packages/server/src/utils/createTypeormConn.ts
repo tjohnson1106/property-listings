@@ -3,8 +3,6 @@ import { User } from "../entity/User";
 import { Listing } from "../entity/Listing";
 
 
-
-
 export const createTypeormConn = async () => {
   const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
   return process.env.NODE_ENV === "production" ?
