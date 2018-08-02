@@ -68,35 +68,67 @@ export class CreateListingConnector extends PureComponent<
             <div style={{ width: 400, margin: "auto" }}>
               <Field
                 // tslint:disable-next-line:jsx-no-multiline-js
-                name="email"
+                name="name"
                 // tslint:disable-next-line:jsx-no-multiline-js
-                prefix={
-                  (
-                    <Icon
-                      type="user"
-                      style={{ color: "rgba(0,0,0,.25)" }}
-                    />
-                  ) as any
-                }
-                // tslint:disable-nextLinkine-js
-                placeholder="Email"
+                placeholder="Name"
+                // tslint:disable-next-line:jsx-no-multiline-js
                 component={InputField}
-                Link
               />
               <Field
-                name="password"
                 // tslint:disable-next-line:jsx-no-multiline-js
-                type="password"
+                name="category"
                 // tslint:disable-next-line:jsx-no-multiline-js
-                prefix={
-                  (
-                    <Icon
-                      type="lock"
-                      style={{ color: "rgba(0,0,0,.25)" }}
-                    />
-                  ) as any
-                }
-                placeholder="Password"
+                placeholder="Category"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                component={InputField}
+              />
+              <Field
+                // tslint:disable-next-line:jsx-no-multiline-js
+                name="description"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                placeholder="Description"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                component={InputField}
+              />
+
+              <Field
+                // tslint:disable-next-line:jsx-no-multiline-js
+                name="price"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                placeholder="Price"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                component={InputField}
+              />
+              <Field
+                // tslint:disable-next-line:jsx-no-multiline-js
+                name="beds"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                placeholder="Beds"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                component={InputField}
+              />
+              <Field
+                // tslint:disable-next-line:jsx-no-multiline-js
+                name="guests"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                placeholder="Guests"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                component={InputField}
+              />
+              <Field
+                // tslint:disable-next-line:jsx-no-multiline-js
+                name="latitude"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                placeholder="Latitude"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                component={InputField}
+              />
+              <Field
+                // tslint:disable-next-line:jsx-no-multiline-js
+                name="longitude"
+                // tslint:disable-next-line:jsx-no-multiline-js
+                placeholder="Longitude"
+                // tslint:disable-next-line:jsx-no-multiline-js
                 component={InputField}
               />
 
