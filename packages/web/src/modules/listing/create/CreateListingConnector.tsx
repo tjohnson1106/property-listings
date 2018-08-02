@@ -1,10 +1,12 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
 import { RouteComponentProps } from "react-router-dom";
-import { Formik, Field, Form } from "formik";
+import { Formik, Form } from "formik";
 import * as Antd from "antd";
 
-import { InputField } from "../../shared/InputField";
+import { PageOne } from "./ui/PageOne";
+import { PageTwo } from "./ui/PageTwo";
+import { PageThree } from "./ui/PageThree";
 
 const { Form: AntForm, Button } = Antd;
 const FormItem = AntForm.Item;
@@ -39,10 +41,20 @@ interface FormValues {
   amenities: string[];
 }
 
-const pages = [];
+interface State {
+  page: number;
+}
+
+// ts-lint:disable-next-line:jsx-key
+const pages = [
+  <PageOne key="" />,
+  <PageTwo key="" />,
+  <PageThree key="" />
+];
 
 export class CreateListingConnector extends PureComponent<
-  RouteComponentProps<{}>
+  RouteComponentProps<{}>,
+  State
 > {
   state = {
     page: 0
@@ -51,6 +63,8 @@ export class CreateListingConnector extends PureComponent<
   submit = (values: any) => {
     console.log("values", values);
   };
+
+  nextPage = () => this.setState(state => ({ page: state.page + 1 }));
 
   render() {
     return (
@@ -70,82 +84,26 @@ export class CreateListingConnector extends PureComponent<
         onSubmit={this.submit}
       >
         {() => (
+          // tslint:disable-next-line:jsx-no-multiline-js
           <Form style={{ display: "flex" }}>
             <div style={{ width: 400, margin: "auto" }}>
-              <Field
-                // tslint:disable-next-line:jsx-no-multiline-js
-                name="name"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                placeholder="Name"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                component={InputField}
-              />
-              <Field
-                // tslint:disable-next-line:jsx-no-multiline-js
-                name="category"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                placeholder="Category"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                component={InputField}
-              />
-              <Field
-                // tslint:disable-next-line:jsx-no-multiline-js
-                name="description"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                placeholder="Description"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                component={InputField}
-              />
-
-              <Field
-                // tslint:disable-next-line:jsx-no-multiline-js
-                name="price"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                placeholder="Price"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                component={InputField}
-              />
-              <Field
-                // tslint:disable-next-line:jsx-no-multiline-js
-                name="beds"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                placeholder="Beds"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                component={InputField}
-              />
-              <Field
-                // tslint:disable-next-line:jsx-no-multiline-js
-                name="guests"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                placeholder="Guests"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                component={InputField}
-              />
-              <Field
-                // tslint:disable-next-line:jsx-no-multiline-js
-                name="latitude"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                placeholder="Latitude"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                component={InputField}
-              />
-              <Field
-                // tslint:disable-next-line:jsx-no-multiline-js
-                name="longitude"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                placeholder="Longitude"
-                // tslint:disable-next-line:jsx-no-multiline-js
-                component={InputField}
-              />
+              {pages[this.state.page]}
 
               <FormItem>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-form-button"
-                >
-                  create listing
-                </Button>
+                {// tslint:disable-next-line:jsx-no-multiline-js
+                this.state.page === pages.length - 1 ? (
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="login-form-button"
+                  >
+                    create listing
+                  </Button>
+                ) : (
+                  <Button type="primary" onClick={this.nextPage}>
+                    next page
+                  </Button>
+                )}
               </FormItem>
             </div>
           </Form>
