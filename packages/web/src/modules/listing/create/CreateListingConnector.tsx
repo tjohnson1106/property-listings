@@ -84,26 +84,29 @@ export class CreateListingConnector extends PureComponent<
         onSubmit={this.submit}
       >
         {() => (
-          // tslint:disable-next-line:jsx-no-multiline-js
+          // tslint:disable-next-line:jsx-no-multiline-jsx
           <Form style={{ display: "flex" }}>
             <div style={{ width: 400, margin: "auto" }}>
               {pages[this.state.page]}
 
               <FormItem>
-                {// tslint:disable-next-line:jsx-no-multiline-js
-                this.state.page === pages.length - 1 ? (
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="login-form-button"
-                  >
-                    create listing
-                  </Button>
-                ) : (
-                  <Button type="primary" onClick={this.nextPage}>
-                    next page
-                  </Button>
-                )}
+                {/* prettier-ignore */}
+                <div style={{   display: "flex",   justifyContent: "flex-end" }} >
+                  {// tslint:disable-next-line:jsx-no-multiline-js
+                  this.state.page === pages.length - 1 ? (
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      className="login-form-button"
+                    >
+                      create listing
+                    </Button>
+                  ) : (
+                    <Button type="primary" onClick={this.nextPage}>
+                      next page
+                    </Button>
+                  )}
+                </div>
               </FormItem>
             </div>
           </Form>
