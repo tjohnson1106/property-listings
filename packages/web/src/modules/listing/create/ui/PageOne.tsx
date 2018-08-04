@@ -11,7 +11,10 @@ export const PageOne = () => (
       placeholder="Name"
       // tslint:disable-next-line:jsx-no-multiline-js
       component={InputField}
+      // tslint:disable-next-line:jsx-no-multiline-js
+      label="Name"
     />
+
     <Field
       // tslint:disable-next-line:jsx-no-multiline-js
       name="category"
@@ -19,7 +22,10 @@ export const PageOne = () => (
       placeholder="Category"
       // tslint:disable-next-line:jsx-no-multiline-js
       component={InputField}
+      // tslint:disable-next-line:jsx-no-multiline-js
+      label="Category"
     />
+
     <Field
       // tslint:disable-next-line:jsx-no-multiline-js
       name="description"
@@ -27,6 +33,8 @@ export const PageOne = () => (
       placeholder="Description"
       // tslint:disable-next-line:jsx-no-multiline-js
       component={InputField}
+      // tslint:disable-next-line:jsx-no-multiline-js
+      label="Description"
     />
   </React.Fragment>
 );

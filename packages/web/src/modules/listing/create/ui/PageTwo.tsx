@@ -11,7 +11,12 @@ export const PageTwo = () => (
       placeholder="Price"
       // tslint:disable-next-line:jsx-no-multiline-js
       component={InputField}
+      // tslint:disable-next-line:jsx-no-multiline-js
+      label="Price"
+      // tslint:disable-next-line:jsx-no-multiline-js
+      useNumberComponent={true}
     />
+
     <Field
       // tslint:disable-next-line:jsx-no-multiline-js
       name="beds"
@@ -19,7 +24,12 @@ export const PageTwo = () => (
       placeholder="Beds"
       // tslint:disable-next-line:jsx-no-multiline-js
       component={InputField}
+      // tslint:disable-next-line:jsx-no-multiline-js
+      label="Beds"
+      // tslint:disable-next-line:jsx-no-multiline-js
+      useNumberComponent={true}
     />
+
     <Field
       // tslint:disable-next-line:jsx-no-multiline-js
       name="guests"
@@ -27,6 +37,10 @@ export const PageTwo = () => (
       placeholder="Guests"
       // tslint:disable-next-line:jsx-no-multiline-js
       component={InputField}
+      // tslint:disable-next-line:jsx-no-multiline-js
+      label="Guests"
+      // tslint:disable-next-line:jsx-no-multiline-js
+      useNumberComponent={true}
     />
   </React.Fragment>
 );

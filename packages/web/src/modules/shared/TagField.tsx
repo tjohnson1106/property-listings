@@ -1,26 +1,22 @@
 import * as React from "react";
 import { FieldProps } from "formik";
-import { Form, Input, InputNumber } from "antd";
+import { Form, Select } from "antd";
 
 const FormItem = Form.Item;
 
 // remember to implement label props on pages
-export const InputField: React.SFC<
+export const TagField: React.SFC<
   FieldProps<any> & {
     prefix: React.ReactNode;
     label?: string;
-    useNumberComponent: boolean;
   }
 > = ({
-  field: { onChange, ...field },
+  field: { onChange, onBlur: _, ...field },
   form: { touched, errors, setFieldValue }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   label,
-  useNumberComponent = false,
   ...props
 }) => {
   const errorMessage = touched[field.name] && errors[field.name];
-
-  const Comp = useNumberComponent ? InputNumber : Input;
 
   return (
     <FormItem
@@ -30,14 +26,15 @@ export const InputField: React.SFC<
       // tslint:disable-next-line:jsx-no-multiline-js
       validateStatus={errorMessage ? "error" : undefined}
     >
-      <Comp
+      <Select
         {...field}
+        // tslint:disable-next-line:jsx-no-multiline-js
         {...props}
         // tslint:disable-next-line:jsx-no-multiline-js
-        onChange={
-          useNumberComponent
-            ? (newValue: any) => setFieldValue(field.name, newValue)
-            : onChange
+        mode="tags"
+        // tslint:disable-next-line:jsx-no-multiline-js jsx-no-lambda
+        onChange={(newValue: any) =>
+          setFieldValue(field.name, newValue)
         }
       />
     </FormItem>
