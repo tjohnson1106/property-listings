@@ -20,13 +20,13 @@ export const createListingMutation = gql`
       input: {
         name: $name
         category: $category
-        description: $category
-        price: $category
+        description: $description
+        price: $price
         latitude: $latitude
         longitude: $longitude
         beds: $beds
-        guests: $beds
-        amenities: $beds
+        guests: $guests
+        amenities: $amenities
       }
     )
   }

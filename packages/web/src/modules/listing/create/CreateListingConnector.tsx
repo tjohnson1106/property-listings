@@ -64,8 +64,8 @@ export class CreateListingConnectorSubject extends PureComponent<
     page: 0
   };
 
-  submit = (values: any) => {
-    this.props.createListing;
+  submit = (values: FormValues) => {
+    this.props.createListing(values);
   };
 
   nextPage = () => this.setState(state => ({ page: state.page + 1 }));
