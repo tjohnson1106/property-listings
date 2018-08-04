@@ -7,6 +7,10 @@ import * as Antd from "antd";
 import { PageOne } from "./ui/PageOne";
 import { PageTwo } from "./ui/PageTwo";
 import { PageThree } from "./ui/PageThree";
+import {
+  withCreateListing,
+  NewPropsCreateListing
+} from "@air-init/controller";
 
 const { Form: AntForm, Button } = Antd;
 const FormItem = AntForm.Item;
@@ -52,8 +56,8 @@ const pages = [
   <PageThree key="" />
 ];
 
-export class CreateListingConnector extends PureComponent<
-  RouteComponentProps<{}>,
+export class CreateListingConnectorSubject extends PureComponent<
+  RouteComponentProps<{}> & NewPropsCreateListing,
   State
 > {
   state = {
@@ -61,7 +65,7 @@ export class CreateListingConnector extends PureComponent<
   };
 
   submit = (values: any) => {
-    console.log("values", values);
+    this.props.createListing;
   };
 
   nextPage = () => this.setState(state => ({ page: state.page + 1 }));
@@ -117,3 +121,7 @@ export class CreateListingConnector extends PureComponent<
     );
   }
 }
+
+export const CreateListingConnector = withCreateListing(
+  CreateListingConnectorSubject
+);
