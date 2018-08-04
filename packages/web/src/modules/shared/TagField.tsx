@@ -31,7 +31,8 @@ export const TagField: React.SFC<
         // tslint:disable-next-line:jsx-no-multiline-js
         {...props}
         // tslint:disable-next-line:jsx-no-multiline-js
-        placeholder="Tags Mode"
+        mode="tags"
+        // tslint:disable-next-line:jsx-no-multiline-js jsx-no-lambda
         onChange={(newValue: any) =>
           setFieldValue(field.name, newValue)
         }
