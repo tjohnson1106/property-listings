@@ -12,8 +12,8 @@ export const InputField: React.SFC<
     useNumberComponent: boolean;
   }
 > = ({
-  field, // { name, value, onChange, onBlur }
-  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  field: { onChange, ...field },
+  form: { touched, errors, setFieldValue }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   label,
   useNumberComponent = false,
   ...props
@@ -30,7 +30,16 @@ export const InputField: React.SFC<
       // tslint:disable-next-line:jsx-no-multiline-js
       validateStatus={errorMessage ? "error" : undefined}
     >
-      <Comp {...field} {...props} />
+      <Comp
+        {...field}
+        {...props}
+        // tslint:disable-next-line:jsx-no-multiline-js
+        onChange={
+          useNumberComponent
+            ? (newValue: any) => setFieldValue(field.name, newValue)
+            : onChange
+        }
+      />
     </FormItem>
   );
 };
