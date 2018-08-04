@@ -93,7 +93,8 @@ export class CreateListingConnector extends PureComponent<
                 {/* prettier-ignore */}
                 <div style={{   display: "flex",   justifyContent: "flex-end" }} >
                   {// tslint:disable-next-line:jsx-no-multiline-js
-                  this.state.page === pages.length - 1 ? (
+                    this.state.page === pages.length - 1 ? (
+                    <div>
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -101,6 +102,7 @@ export class CreateListingConnector extends PureComponent<
                     >
                       create listing
                     </Button>
+                    </div>      
                   ) : (
                     <Button type="primary" onClick={this.nextPage}>
                       next page
