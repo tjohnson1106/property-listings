@@ -78,6 +78,7 @@ export class CreateListingConnectorSubject extends PureComponent<
 
   render() {
     return (
+      // @ts-ignore
       <Formik<{}, FormValues>
         // tslint:disable-next-line:jsx-no-multiline-js
         initialValues={{
