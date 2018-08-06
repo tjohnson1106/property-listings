@@ -1,7 +1,7 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
 import { RouteComponentProps } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikActions } from "formik";
 import * as Antd from "antd";
 
 import { PageOne } from "./ui/PageOne";
@@ -64,8 +64,14 @@ export class CreateListingConnectorSubject extends PureComponent<
     page: 0
   };
 
-  submit = (values: FormValues) => {
-    this.props.createListing(values);
+  submit = async (
+    values: FormValues,
+    { setSubmitting }: FormikActions<FormValues>
+  ) => {
+    // waits for listing to be created(formik props)
+    await this.props.createListing(values);
+    // allows user to submit
+    setSubmitting(false);
   };
 
   nextPage = () => this.setState(state => ({ page: state.page + 1 }));
@@ -87,7 +93,7 @@ export class CreateListingConnectorSubject extends PureComponent<
         }}
         onSubmit={this.submit}
       >
-        {() => (
+        {({ isSubmitting }) => (
           // tslint:disable-next-line:jsx-no-multiline-jsx
           <Form style={{ display: "flex" }}>
             <div style={{ width: 400, margin: "auto" }}>
@@ -103,6 +109,7 @@ export class CreateListingConnectorSubject extends PureComponent<
                       type="primary"
                       htmlType="submit"
                       className="login-form-button"
+                      disabled={isSubmitting}    
                     >
                       create listing
                     </Button>

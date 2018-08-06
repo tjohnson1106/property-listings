@@ -1,8 +1,11 @@
- // @ts-ignore
-import * as React from 'react';
+//@ts-ignore
+import * as React from "react";
 import gql from "graphql-tag";
-import { graphql } from 'react-apollo';
-import { CreateListingMutationVariables, CreateListingMutation } from "../../schemaTypes";
+import { graphql } from "react-apollo";
+import {
+  CreateListingMutationVariables,
+  CreateListingMutation
+} from "../../schemaTypes";
 
 export const createListingMutation = gql`
   mutation CreateListingMutation(
@@ -35,9 +38,8 @@ export const createListingMutation = gql`
 // TS interface needed for createListing
 
 export interface NewPropsCreateListing {
-    createListing: ( variables: CreateListingMutationVariables ) => void;
+  createListing: (variables: CreateListingMutationVariables) => void;
 }
-
 
 /*prettier-ignore*/
 export const withCreateListing = graphql<
