@@ -1,12 +1,16 @@
 import * as React from "react";
 import PureComponent = React.PureComponent;
 import { RouteComponentProps } from "react-router-dom";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikActions } from "formik";
 import * as Antd from "antd";
 
 import { PageOne } from "./ui/PageOne";
 import { PageTwo } from "./ui/PageTwo";
 import { PageThree } from "./ui/PageThree";
+import {
+  withCreateListing,
+  NewPropsCreateListing
+} from "@air-init/controller";
 
 const { Form: AntForm, Button } = Antd;
 const FormItem = AntForm.Item;
@@ -52,16 +56,22 @@ const pages = [
   <PageThree key="" />
 ];
 
-export class CreateListingConnector extends PureComponent<
-  RouteComponentProps<{}>,
+export class CreateListingConnectorSubject extends PureComponent<
+  RouteComponentProps<{}> & NewPropsCreateListing,
   State
 > {
   state = {
     page: 0
   };
 
-  submit = (values: any) => {
-    console.log("values", values);
+  submit = async (
+    values: FormValues,
+    { setSubmitting }: FormikActions<FormValues>
+  ) => {
+    // waits for listing to be created(formik props)
+    await this.props.createListing(values);
+    // allows user to submit
+    setSubmitting(false);
   };
 
   nextPage = () => this.setState(state => ({ page: state.page + 1 }));
@@ -83,7 +93,7 @@ export class CreateListingConnector extends PureComponent<
         }}
         onSubmit={this.submit}
       >
-        {() => (
+        {({ isSubmitting }) => (
           // tslint:disable-next-line:jsx-no-multiline-jsx
           <Form style={{ display: "flex" }}>
             <div style={{ width: 400, margin: "auto" }}>
@@ -99,6 +109,7 @@ export class CreateListingConnector extends PureComponent<
                       type="primary"
                       htmlType="submit"
                       className="login-form-button"
+                      disabled={isSubmitting}    
                     >
                       create listing
                     </Button>
@@ -117,3 +128,7 @@ export class CreateListingConnector extends PureComponent<
     );
   }
 }
+
+export const CreateListingConnector = withCreateListing(
+  CreateListingConnectorSubject
+);
