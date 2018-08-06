@@ -1,10 +1,13 @@
+import * as shortid from "shortid";
+import { createWriteStream } from "fs";
+
 import { ResolverMap } from "../../../types/graphql-utils";
 import { Listing } from "../../../entity/Listing";
 // import { isAuthenticated } from "../../shared/isAuthenticated";import { isAuthenticated } from "../../shared/isAuthenticated";
 
-const storeUpload = async ({ stream, filename }): Promise<any> => {
+const storeUpload = async ({ stream }: any): Promise<any> => {
   const id = shortid.generate();
-  const path = `${uploadDir}/${id}-${filename}`;
+  const path = `images/${id}`;
 
   return new Promise((resolve, reject) =>
     stream
@@ -14,10 +17,10 @@ const storeUpload = async ({ stream, filename }): Promise<any> => {
   );
 };
 
-const processUpload = async upload => {
-  const { stream, filename, mimetype, encoding } = await upload;
-  const { id, path } = await storeUpload({ stream, filename });
-  return recordFile({ id, filename, mimetype, encoding, path });
+const processUpload = async (upload: any) => {
+  const { stream, filename } = await upload;
+  const { id } = await storeUpload({ stream, filename });
+  return id;
 };
 
 export const resolvers: ResolverMap = {
