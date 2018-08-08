@@ -9,7 +9,7 @@ import { PageTwo } from "./ui/PageTwo";
 import { PageThree } from "./ui/PageThree";
 import {
   withCreateListing,
-  NewPropsCreateListing
+  WithCreateListing
 } from "@air-init/controller";
 
 const { Form: AntForm, Button } = Antd;
@@ -49,7 +49,7 @@ interface State {
   page: number;
 }
 
-// ts-lint:disable-next-line:jsx-key
+// ts-lint:disable-next-line:jsx-key NewProps
 const pages = [
   <PageOne key="" />,
   <PageTwo key="" />,
@@ -57,7 +57,7 @@ const pages = [
 ];
 
 export class CreateListingConnectorSubject extends PureComponent<
-  RouteComponentProps<{}> & NewPropsCreateListing,
+  RouteComponentProps<{}> & WithCreateListing,
   State
 > {
   state = {
@@ -93,8 +93,8 @@ export class CreateListingConnectorSubject extends PureComponent<
         }}
         onSubmit={this.submit}
       >
-        {({ isSubmitting }) => (
-          // tslint:disable-next-line:jsx-no-multiline-jsx
+        {({ isSubmitting }: any) => (
+          // tslint:disable-next-line:jsx-no-multiline-jsx NewProps
           <Form style={{ display: "flex" }}>
             <div style={{ width: 400, margin: "auto" }}>
               {pages[this.state.page]}
@@ -124,7 +124,7 @@ export class CreateListingConnectorSubject extends PureComponent<
             </div>
           </Form>
         )}
-      </Formik>
+      </Formik>: 
     );
   }
 }
