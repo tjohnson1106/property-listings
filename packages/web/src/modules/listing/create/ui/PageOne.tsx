@@ -1,6 +1,7 @@
 import * as React from "react";
 import { InputField } from "../../../shared/InputField";
 import { Field } from "formik";
+import { DropZoneField } from "../../../shared/DropZoneField";
 
 export const PageOne = () => (
   <React.Fragment>
@@ -35,6 +36,12 @@ export const PageOne = () => (
       component={InputField}
       // tslint:disable-next-line:jsx-no-multiline-js
       label="Description"
+    />
+    <Field
+      // tslint:disable-next-line:jsx-no-multiline-js
+      name="picture"
+      // tslint:disable-next-line:jsx-no-multiline-js
+      component={DropZoneField}
     />
   </React.Fragment>
 );

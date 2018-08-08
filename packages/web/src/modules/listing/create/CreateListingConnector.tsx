@@ -3,6 +3,7 @@ import PureComponent = React.PureComponent;
 import { RouteComponentProps } from "react-router-dom";
 import { Formik, Form, FormikActions } from "formik";
 import * as Antd from "antd";
+import { ImageFile } from "react-dropzone";
 
 import { PageOne } from "./ui/PageOne";
 import { PageTwo } from "./ui/PageTwo";
@@ -11,6 +12,7 @@ import {
   withCreateListing,
   WithCreateListing
 } from "@air-init/controller";
+
 
 const { Form: AntForm, Button } = Antd;
 const FormItem = AntForm.Item;
@@ -34,6 +36,7 @@ const FormItem = AntForm.Item;
 // amenities: [String!]!
 
 interface FormValues {
+  picture: ImageFile | null;
   name: string;
   category: string;
   description: string;
@@ -78,9 +81,11 @@ export class CreateListingConnectorSubject extends PureComponent<
 
   render() {
     return (
+     
       <Formik<{}, FormValues>
         // tslint:disable-next-line:jsx-no-multiline-js
         initialValues={{
+          picture: null,
           name: "",
           category: "",
           description: "",
@@ -93,7 +98,7 @@ export class CreateListingConnectorSubject extends PureComponent<
         }}
         onSubmit={this.submit}
       >
-        {({ isSubmitting }: any) => (
+        {({ isSubmitting, values }: any) => console.log(values) || (
           // tslint:disable-next-line:jsx-no-multiline-jsx NewProps
           <Form style={{ display: "flex" }}>
             <div style={{ width: 400, margin: "auto" }}>
