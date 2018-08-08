@@ -12,14 +12,18 @@
     "refresh:types": "npm run gen:types && npm run build"
   },
   "dependencies": {
+    "@types/react-dropzone": "^4.2.1",
+    "apollo-upload-client": "^8.1.0",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
     "react": "^16.4.1",
     "react-apollo": "^2.1.6",
     "react-dom": "^16.4.1",
+    "react-dropzone": "^4.3.0",
     "react-router": "^4.3.1"
   },
   "devDependencies": {
+    "@types/apollo-upload-client": "^8.1.0",
     "@types/node": "^10.3.4",
     "@types/react": "^16.4.0",
     "@types/react-dom": "^16.0.6",
