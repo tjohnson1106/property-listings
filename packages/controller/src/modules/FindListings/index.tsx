@@ -29,9 +29,13 @@ export const withFindListings = graphql<
   WithFindListings
 >(findListingsQuery, {
   props: ({ data }) => {
-    if (data) {
+    let listings: FindListingsQuery_findListings[] = [];
+    if (data && !data.loading && data.findListings) {
+      listings = data.findListings;
     }
 
-    return {};
+    return {
+      listings
+    };
   }
 });
