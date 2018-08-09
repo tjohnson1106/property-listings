@@ -5,6 +5,7 @@
   },
   "rules": {
     "jsx-no-multiline-js": 0,
-    "jsx-key": 0
+    "jsx-key": 0,
+    "jsx-no-lambda": 0
   }
 }
