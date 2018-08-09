@@ -2,7 +2,8 @@ import * as React from "react";
 import PureComponent = React.PureComponent;
 import { RouteComponentProps } from "react-router-dom";
 import { Formik, Form, FormikActions } from "formik";
-import * as Antd from "antd";
+import { Form as AntForm, Button } from "antd";
+import { ImageFile } from "react-dropzone";
 
 import { PageOne } from "./ui/PageOne";
 import { PageTwo } from "./ui/PageTwo";
@@ -12,7 +13,6 @@ import {
   WithCreateListing
 } from "@air-init/controller";
 
-const { Form: AntForm, Button } = Antd;
 const FormItem = AntForm.Item;
 
 // name: String!
@@ -34,6 +34,7 @@ const FormItem = AntForm.Item;
 // amenities: [String!]!
 
 interface FormValues {
+  picture: ImageFile | null;
   name: string;
   category: string;
   description: string;
@@ -56,7 +57,7 @@ const pages = [
   <PageThree key="" />
 ];
 
-export class CreateListingConnectorSubject extends PureComponent<
+class CreateListingConnectorSubject extends PureComponent<
   RouteComponentProps<{}> & WithCreateListing,
   State
 > {
@@ -68,9 +69,7 @@ export class CreateListingConnectorSubject extends PureComponent<
     values: FormValues,
     { setSubmitting }: FormikActions<FormValues>
   ) => {
-    // waits for listing to be created(formik props)
     await this.props.createListing(values);
-    // allows user to submit
     setSubmitting(false);
   };
 
@@ -81,50 +80,56 @@ export class CreateListingConnectorSubject extends PureComponent<
       <Formik<{}, FormValues>
         // tslint:disable-next-line:jsx-no-multiline-js
         initialValues={{
+          picture: null,
           name: "",
           category: "",
           description: "",
           price: 0,
-          latitude: 0,
-          longitude: 0,
           beds: 0,
           guests: 0,
+          latitude: 0,
+          longitude: 0,
           amenities: []
         }}
         onSubmit={this.submit}
       >
-        {({ isSubmitting }: any) => (
-          // tslint:disable-next-line:jsx-no-multiline-jsx NewProps
-          <Form style={{ display: "flex" }}>
-            <div style={{ width: 400, margin: "auto" }}>
-              {pages[this.state.page]}
-
-              <FormItem>
-                {/* prettier-ignore */}
-                <div style={{   display: "flex",   justifyContent: "flex-end" }} >
-                  {// tslint:disable-next-line:jsx-no-multiline-js
-                    this.state.page === pages.length - 1 ? (
-                    <div>
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="login-form-button"
-                      disabled={isSubmitting}    
-                    >
-                      create listing
-                    </Button>
-                    </div>      
-                  ) : (
-                    <Button type="primary" onClick={this.nextPage}>
-                      next page
-                    </Button>
-                  )}
-                </div>
-              </FormItem>
-            </div>
-          </Form>
-        )}
-      </Formik>: 
+        {/* tslint:disable-next-line:jsx-no-multiline-js */}
+        {({ isSubmitting, values }: any) =>
+          console.log(values) || (
+            <Form style={{ display: "flex" }}>
+              <div style={{ width: 400, margin: "auto" }}>
+                {pages[this.state.page]}
+                <FormItem>
+                  <div
+                    // tslint:disable-next-line:jsx-no-multiline-js
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end"
+                    }}
+                  >
+                    {/* tslint:disable-next-line:jsx-no-multiline-js   */}
+                    {this.state.page === pages.length - 1 ? (
+                      <div>
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          disabled={isSubmitting}
+                        >
+                          create listing
+                        </Button>
+                      </div>
+                    ) : (
+                      <Button type="primary" onClick={this.nextPage}>
+                        next page
+                      </Button>
+                    )}
+                  </div>
+                </FormItem>
+              </div>
+            </Form>
+          )
+        }
+      </Formik>
     );
   }
 }
