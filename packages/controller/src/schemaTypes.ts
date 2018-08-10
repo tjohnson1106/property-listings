@@ -108,7 +108,7 @@ export interface LoginMutation_login {
 }
 
 export interface LoginMutation {
-  login: LoginMutation_login | null;
+  login: LoginMutation_login;
 }
 
 export interface LoginMutationVariables {

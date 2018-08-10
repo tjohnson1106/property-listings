@@ -20,6 +20,7 @@ export const findListingsQuery = gql`
 
 export interface WithFindListings {
   listings: FindListingsQuery_findListings[];
+  loading: boolean;
 }
 
 export const withFindListings = graphql<
@@ -34,8 +35,10 @@ export const withFindListings = graphql<
       listings = data.findListings;
     }
 
+    //data undefined so checking for data
     return {
-      listings
+      listings,
+      loading: data ? data.loading : false
     };
   }
 });
