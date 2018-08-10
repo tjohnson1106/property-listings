@@ -16,17 +16,25 @@ class FindListingsSubject extends PureComponent<WithFindListings> {
         {loading && <div>...loading</div>}
 
         {listings.map(l => (
+          // tslint:disable-next-line:jsx-no-multiline-js
           <Card
-            hoverable
+            key={`${l.id}-card`}
+            hoverable={true}
+            // tslint:disable-next-line:jsx-no-multiline-js
             style={{ width: 240 }}
+            // tslint:disable-next-line:jsx-no-multiline-js
             cover={
               <img
+                // tslint:disable-next-line:jsx-no-multiline-js
                 alt="example"
-                src="http://res.cloudinary.com/bracket-factory/image/upload/v1532452457/saga/wide.jpg"
+                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
               />
             }
           >
-            <Meta />
+            <Meta
+              title={l.name}
+              description="cloudinary collection"
+            />
           </Card>
         ))}
       </div>
