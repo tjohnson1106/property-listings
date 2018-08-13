@@ -7,6 +7,7 @@ import * as connectRedis from "connect-redis";
 import * as RateLimit from "express-rate-limit";
 import * as RateLimitRedisStore from "rate-limit-redis";
 import { applyMiddleware } from "graphql-middleware";
+import * as express from "express";
 
 import { middleware } from "./middleware";
 import { redis } from "./redis";
@@ -65,6 +66,8 @@ export const startServer = async () => {
       }
     } as any)
   );
+
+  server.express.use("/images", express.static("images"));
 
   const cors = {
     credentials: true,
