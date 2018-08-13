@@ -24,11 +24,13 @@ class FindListingsSubject extends PureComponent<WithFindListings> {
             style={{ width: 240 }}
             // tslint:disable-next-line:jsx-no-multiline-js
             cover={
-              <img
-                // tslint:disable-next-line:jsx-no-multiline-js
-                alt="example"
-                src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-              />
+              l.pictureUrl && (
+                <img
+                  // tslint:disable-next-line:jsx-no-multiline-js
+                  alt="example"
+                  src={l.pictureUrl}
+                />
+              )
             }
           >
             <Meta
